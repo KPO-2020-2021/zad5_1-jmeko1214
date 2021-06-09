@@ -9,6 +9,7 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "../include/lacze_do_gnuplota.hh"
 #include "exampleConfig.h"
 #include "example.h"
 
