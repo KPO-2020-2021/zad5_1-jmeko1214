@@ -39,9 +39,9 @@ using namespace std;
 
 #define ILOSC_WIERZ_LINII_TWORZACEJ            4
 
-#define PLIK_WZORCOWEGO_SZESCIANU       "bryly_wzorcowe/szescian.dat"
-#define PLIK_WZORCOWEGO_GRANIASTOSLUPA6 "bryly_wzorcowe/graniastoslup6.dat"
-#define PLIK_KORPUSU_DRONA1             "datasets/korpus_drana1.dat"
+#define PLIK_WZORCOWEGO_SZESCIANU       "../datasets/bryly_wzorcowe/szescian.dat"
+#define PLIK_WZORCOWEGO_GRANIASTOSLUPA6 "../datasets/bryly_wzorcowe/graniastoslup6.dat"
+#define PLIK_KORPUSU_DRONA1             "../datasets/korpus_drana1.dat"
 
 /*!
  * \brief Przelicza wartość kąta ze stopni na radiany.
@@ -295,17 +295,17 @@ bool TworzKorpus(const char*  NazwPliku_KorpusuWDronie,
 }
 
 
-#define PLIK_ROBOCZY__DRON1_KORPUS  "datasets/PlikRoboczy_Dron1_Korpus.dat"
-#define PLIK_ROBOCZY__DRON1_ROTOR1  "datasets/PlikRoboczy_Dron1_Rotor1.dat"
-#define PLIK_ROBOCZY__DRON1_ROTOR2  "datasets/PlikRoboczy_Dron1_Rotor2.dat"
-#define PLIK_ROBOCZY__DRON1_ROTOR3  "datasets/PlikRoboczy_Dron1_Rotor3.dat"
-#define PLIK_ROBOCZY__DRON1_ROTOR4  "datasets/PlikRoboczy_Dron1_Rotor4.dat"
+#define PLIK_ROBOCZY__DRON1_KORPUS  "../datasets/PlikRoboczy_Dron1_Korpus.dat"
+#define PLIK_ROBOCZY__DRON1_ROTOR1  "../datasets/PlikRoboczy_Dron1_Rotor1.dat"
+#define PLIK_ROBOCZY__DRON1_ROTOR2  "../datasets/PlikRoboczy_Dron1_Rotor2.dat"
+#define PLIK_ROBOCZY__DRON1_ROTOR3  "../datasets/PlikRoboczy_Dron1_Rotor3.dat"
+#define PLIK_ROBOCZY__DRON1_ROTOR4  "../datasets/PlikRoboczy_Dron1_Rotor4.dat"
 
-#define PLIK_WLASCIWY__DRON1_KORPUS  "datasets/PlikWlasciwy_Dron1_Korpus.dat"
-#define PLIK_WLASCIWY__DRON1_ROTOR1  "datasets/PlikWlasciwy_Dron1_Rotor1.dat"
-#define PLIK_WLASCIWY__DRON1_ROTOR2  "datasets/PlikWlasciwy_Dron1_Rotor2.dat"
-#define PLIK_WLASCIWY__DRON1_ROTOR3  "datasets/PlikWlasciwy_Dron1_Rotor3.dat"
-#define PLIK_WLASCIWY__DRON1_ROTOR4  "datasets/PlikWlasciwy_Dron1_Rotor4.dat"
+#define PLIK_WLASCIWY__DRON1_KORPUS  "../datasets/PlikWlasciwy_Dron1_Korpus.dat"
+#define PLIK_WLASCIWY__DRON1_ROTOR1  "../datasets/PlikWlasciwy_Dron1_Rotor1.dat"
+#define PLIK_WLASCIWY__DRON1_ROTOR2  "../datasets/PlikWlasciwy_Dron1_Rotor2.dat"
+#define PLIK_WLASCIWY__DRON1_ROTOR3  "../datasets/PlikWlasciwy_Dron1_Rotor3.dat"
+#define PLIK_WLASCIWY__DRON1_ROTOR4  "../datasets/PlikWlasciwy_Dron1_Rotor4.dat"
 
 
 /*!
@@ -394,7 +394,7 @@ bool PrzemiescDrona(double KatOrDrona_st, double x_PozDrona, double y_PozDrona, 
 
 
 
-#define PLIK_TRASY_PRZELOTU "datasets/trasa_przelotu.dat"
+#define PLIK_TRASY_PRZELOTU "../datasets/trasa_przelotu.dat"
 
 /*!
  * \brief Dodaje trasę przelotu.
@@ -497,7 +497,7 @@ bool AnimacjaLotuDrona(PzG::LaczeDoGNUPlota &Lacze)
  * CMake definitions (here the version number) from source code.
  */
 int main() {
-  cout << "C++ Boiler Plate v"
+  cout << "Project Dron based onC++ Boiler Plate v"
             << PROJECT_VERSION_MAJOR
             << "."
             << PROJECT_VERSION_MINOR
@@ -505,11 +505,11 @@ int main() {
             << PROJECT_VERSION_PATCH
             << "."
             << PROJECT_VERSION_TWEAK
-            << endl;
-            
+            << endl << endl;
+        
   PzG::LaczeDoGNUPlota  Lacze;
 
-  Lacze.DodajNazwePliku("bryly_wzorcowe/plaszczyzna.dat");
+  Lacze.DodajNazwePliku("../datasets/bryly_wzorcowe/plaszczyzna.dat");
   Lacze.DodajNazwePliku(PLIK_WLASCIWY__DRON1_KORPUS);
   Lacze.DodajNazwePliku(PLIK_WLASCIWY__DRON1_ROTOR1);
   Lacze.DodajNazwePliku(PLIK_WLASCIWY__DRON1_ROTOR2);
