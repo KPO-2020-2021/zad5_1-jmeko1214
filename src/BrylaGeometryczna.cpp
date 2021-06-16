@@ -15,9 +15,21 @@ Wektor3D & BrylaGeometryczna::operator [] (unsigned int index)
 }
 
 /******************************************************************************
- |  Metoda zwracajaca srodek bryly geometrycznej.				    |                  
+ |  Przeciazenie operatora indeksowania, do odczytu i zapisu wsp. wierzch.    |                  
  |  Argumenty:                                                                |
- |     brak						                        |
+ |     index - zmienna przechowuje indeks wierzcholka                         |
+ |  Zwraca:                                                                   |
+ |     Indeks wierzcholka prostopadlosciana                                   |
+ */
+const Wektor3D & BrylaGeometryczna::operator [] (unsigned int index) const
+{
+    return wierzcholki[index];
+}
+
+/******************************************************************************
+ |  Metoda zwracajaca srodek bryly geometrycznej.				              |                  
+ |  Argumenty:                                                                |
+ |     brak						                                              |
  |  Zwraca:                                                                   |
  |     srodek - zwaraca srodek bryly geometrycznej                            |
  */

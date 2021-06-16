@@ -4,6 +4,7 @@
 #include "Macierz3x3.hh"
 #include "Wektor3D.hh"
 #include "size.hh"
+#include <vector>
 
 /*!
  * \brief Klasa opisuje bryle geometryczna
@@ -15,11 +16,13 @@
 class BrylaGeometryczna{
     protected:
     Wektor3D srodek;
-    Wektor3D wierzcholki;
+    std::vector<Wektor3D> wierzcholki;
     std::string sNazwaPliku;
 
     public:
     Wektor3D & operator[] (unsigned int index);         //przeciazenie operatora indeksowania, sluzy do odczytu i zapisu wierzcholkow
+    const Wektor3D & operator[] (unsigned int index) const;
+    
     Wektor3D zwroc_srodek();
     BrylaGeometryczna Obrot(Macierz3x3 macierz);
     BrylaGeometryczna& Przesuniecie(const Wektor3D &wektor);

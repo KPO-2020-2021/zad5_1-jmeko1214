@@ -22,10 +22,9 @@ class Prostopadloscian: public BrylaGeometryczna {
 
   public:
     Prostopadloscian();
-    Prostopadloscian(const Wektor3D &wektor, double wysokosc, double szerokosc, double dlugosc);                                                                                                                                                                                                                                                                      
+    Prostopadloscian( Wektor3D &wektor, double wysokosc, double szerokosc, double dlugosc, std::string sNazwaPliku);                                                                                                                                                                                                                                                                      
 
-    void Zapis_do_strumienia(std::ostream& StrmWy, Prostopadloscian Pr);
-    bool Zapis_do_pliku(const std::string &NazwaPliku, const Prostopadloscian Pr);
+    bool Zapis_do_pliku();
 };
   
 /*!
@@ -35,7 +34,7 @@ class Prostopadloscian: public BrylaGeometryczna {
  * wierzcholkow prostopadloscianu.
  */
 //wyswietla wspolrzedne wierzcholkow prostopadlosciana 
-std::ostream& operator << ( std::ostream &Strm, const Prostopadloscian &Pr); 
+std::ostream& operator << ( std::ostream &Strm, const Prostopadloscian &prosty); 
 
 
 #endif
