@@ -95,7 +95,7 @@ bool Graniastoslup6::Zapis_do_pliku()
  |  Zwraca:                                                                   |
  |     Strumien wyjsciowy                                                     |
  */
-std::ostream & operator << (std::ostream &strm, const Prostopadloscian &Grania)
+std::ostream & operator << (std::ostream &strm, const Graniastoslup6 &Grania)
 {
     for(int i=0; i<GRANIA_SIZE; i++)
     {

@@ -4,6 +4,7 @@
 #include "Macierz3x3.hh"
 #include "Wektor3D.hh"
 #include "size.hh"
+#include <fstream>
 #include <vector>
 
 /*!
@@ -24,8 +25,8 @@ class BrylaGeometryczna{
     const Wektor3D & operator[] (unsigned int index) const;
     
     Wektor3D zwroc_srodek();
-    BrylaGeometryczna Obrot(Macierz3x3 macierz);
-    BrylaGeometryczna& Przesuniecie(const Wektor3D &wektor);
+    void Obrot(Macierz3x3 macierz);
+    void Przesuniecie(const Wektor3D &wektor);
 
 };
 
