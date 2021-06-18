@@ -55,7 +55,6 @@ Graniastoslup6::Graniastoslup6(Wektor3D srodek, double promien, std::string sNaz
  |  Realizuje zapis wspolrzednych Graniastoslupa do pliku                     |                                               
  |  Argumenty:                                                                |
  |     sNazwaPliku - nazwa pliku, do ktorego sa zapisywane wspolrzedne wierzch|
- |     Pr - przechowuje wspolrzedne wierzcholkow, ktore maja byc zapisane     |
  |  Zwraca:                                                                   |
  |     True lub False                                                         |
  */
