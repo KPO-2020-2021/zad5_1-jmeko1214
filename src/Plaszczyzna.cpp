@@ -1,17 +1,15 @@
-#include "Powierzchnia.hh"
+#include "Plaszczyzna.hh"
 
 
 /******************************************************************************
- |  Konstruktor parametryczny klasy Powierzchnia.                             |
+ |  Konstruktor parametryczny klasy Plaszczyzna.                              |
  |  Argumenty:                                                                |
  |     dlugosc - dlugosc plaszczyzny                                          |
  |     szerokosc - szerokosc plaszczyzny                                      |
  |     wysokosc - wysokosc plaszczyzny                                        |
  |     sNazwaPliku - przechowuje nazwe pliku zawierajacego wspolrzedne        |
- |  Zwraca:                                                                   |
- |     Obrocona bryle                                                         | 
  */
-Powierzchnia::Powierzchnia(double dlugosc, double szerokosc, double wysokosc, std::string sNazwaPliku)
+Plaszczyzna::Plaszczyzna(double dlugosc, double szerokosc, double wysokosc, std::string sNazwaPliku)
 {
     this->sNazwaPliku = sNazwaPliku;
     Wektor3D wek;//[3];
@@ -30,14 +28,14 @@ Powierzchnia::Powierzchnia(double dlugosc, double szerokosc, double wysokosc, st
 }
 
 /******************************************************************************
- |  Realizuje zapis wspolrzednych Powierzchni do pliku                        |                                               
+ |  Realizuje zapis wspolrzednych Plaszczyzna do pliku                        |                                               
  |  Argumenty:                                                                |
  |     sNazwaPliku - nazwa pliku, do ktorego sa zapisywane wspolrzedne        |
- |                   powierzchni                                              |
+ |                   plaszczyzny                                              |
  |  Zwraca:                                                                   |
  |     True lub False                                                         |
  */
-bool Powierzchnia::Zapisz_do_pliku()
+bool Plaszczyzna::Zapisz_do_pliku()
 {
     std::ofstream StrmPlikowy;
 
