@@ -54,8 +54,10 @@ bool Wektor<SIZE>::operator != (const Wektor<SIZE> &wek) const
 template <int SIZE>
 Wektor<SIZE>::Wektor() {
     for (int i = 0; i < SIZE; ++i) {
-        size[i] = 0;
+        size[i] = 0;std::cout<<"cos"<<std::endl;
     }
+    ++ilosc_obecnie;
+    ++ilosc_wszystkie;
 }
 
 
@@ -69,8 +71,11 @@ Wektor<SIZE>::Wektor() {
 template <int SIZE>
 Wektor<SIZE>::Wektor(double tmp[SIZE]) {
     for (int i = 0; i < SIZE; ++i) {
-        size[i] = tmp[i];
+        size[i] = tmp[i];std::cout<<"cos"<<std::endl;
     }
+    
+    ++ilosc_obecnie;
+    ++ilosc_wszystkie;
 }
 
 /******************************************************************************
@@ -238,6 +243,10 @@ std::istream &operator >> (std::istream &Strm, Wektor<SIZE> &Wek) {
     return Strm;
 }
 
-
+template <int SIZE>
+Wektor<SIZE>::~Wektor()
+{
+    --ilosc_obecnie;
+}
 
 

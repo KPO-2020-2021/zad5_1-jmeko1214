@@ -31,10 +31,12 @@ class Wektor
 {
 private:
   double size[SIZE];
+  static int ilosc_obecnie;
+  static int ilosc_wszystkie;
 
 public:
   Wektor();
-  Wektor(double [SIZE]);
+  Wektor(double tmp[SIZE]);
 
   double modul() const;       //metoda liczy dlugosc wektora
 
@@ -49,7 +51,18 @@ public:
 
   bool operator == (const Wektor<SIZE> &wek) const;
   bool operator != (const Wektor<SIZE> &wek) const;
+
+  static int ZwrocIloscObecnie() {return ilosc_obecnie;}
+  static int ZwrocIloscWszystkie() {return ilosc_wszystkie;}
+  ~Wektor();
 };
+
+template <int SIZE>
+int Wektor<SIZE>::ilosc_obecnie=0;
+
+template <int SIZE>
+int Wektor<SIZE>::ilosc_wszystkie=0;
+
 
 /*!
  * \brief Przeciążenie dla wyjścia musi także być szablonem
