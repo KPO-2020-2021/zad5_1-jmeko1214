@@ -11,15 +11,16 @@
 #define CZEKAJ 10000
 
 class Dron {
+    private:
     PzG::LaczeDoGNUPlota Lacze;
-    Prostopadloscian *korpus;
+    Prostopadloscian korpus;
     Prostopadloscian korpus_kopia;
-    Graniastoslup6 *rotor[4];
+    Graniastoslup6 rotor[4];
     Graniastoslup6 rotor_kopia[4];
     Wektor3D droga;
     Macierz3x3 obrot;
     double kat;
-    double id;
+    int id;
     char os;
 
     public:
@@ -28,12 +29,13 @@ class Dron {
     */
     Dron();
     Dron(int id, Wektor3D polozenie);
+    //Dron(int id, PzG::LaczeDoGNUPlota &Lacze, Wektor3D polozenie);
 
     /*!
     * \brief Metody klasy Dron
     */
-    void Lot_w_gore();
-    void Lot_w_dol();
+    void Lot_w_gore(double droga);
+    void Lot_w_dol(double droga);
     void Obrot(double kat);
     void Przesuniecie(double przesun);
     void Steruj_dronem();

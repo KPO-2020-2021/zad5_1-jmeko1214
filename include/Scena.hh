@@ -4,7 +4,10 @@
 #include "lacze_do_gnuplota.hh"
 #include "Plaszczyzna.hh"
 #include "Dron.hh"
+#include "Graniastoslup6.hh"
+#include "Prostopadloscian.hh"
 #include <iostream>
+
 
 /*!
  * \brief  Klasa opisuje Scene.
@@ -13,9 +16,12 @@
  *  Tworzy scene, na ktorej dochodzi do ruchu drona.
  */
 class Scena {
+    private:
+
     PzG::LaczeDoGNUPlota Lacze;
     Plaszczyzna *dno;
-    Dron *drony[2];
+    Dron *dron1;
+    Dron *dron2;
     int numer;
 
     public:
@@ -23,6 +29,7 @@ class Scena {
     void Rysuj();
     bool Wybor_drona();
     void Ruch_dronem();
+    ~Scena();
 };
 
 

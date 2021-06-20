@@ -33,78 +33,31 @@ Graniastoslup6::Graniastoslup6()
  */
 Graniastoslup6::Graniastoslup6(Wektor3D srodek, double promien, std::string sNazwaPliku)
 {
-    Wektor3D wektor;
+    Wektor3D vector;
+    wymiary = new Wektor3D(vector);
     this->srodek = srodek;
     this->sNazwaPliku = sNazwaPliku;
 
     for(int i=0; i<360; i+=60)
     {
-        wektor[0] = srodek[0] + promien * cos(i * PI / 180);
-        wektor[1] = srodek[1] + promien * sin(i * PI / 180);
-        wektor[2] = srodek[2];
-        wierzcholki.push_back(wektor);
-        wektor[0] = srodek[0] + promien * cos(i * PI / 180);
-        wektor[1] = srodek[1] + promien * sin(i * PI / 180);
-        wektor[2] = srodek[2] + 10;
-        wierzcholki.push_back(wektor);
+        vector[0] = srodek[0] + promien * cos(i * PI / 180);
+        vector[1] = srodek[1] + promien * sin(i * PI / 180);
+        vector[2] = srodek[2] - 10;
+        wierzcholki.push_back(vector);
+        vector[0] = srodek[0] + promien * cos(i * PI / 180);
+        vector[1] = srodek[1] + promien * sin(i * PI / 180);
+        vector[2] = srodek[2] + 10;
+        wierzcholki.push_back(vector);
     }
 }
 
 
-/******************************************************************************
- |  Realizuje zapis wspolrzednych Graniastoslupa do pliku                     |                                               
- |  Argumenty:                                                                |
- |     sNazwaPliku - nazwa pliku, do ktorego sa zapisywane wspolrzedne wierzch|
- |  Zwraca:                                                                   |
- |     True lub False                                                         |
- */
-bool Graniastoslup6::Zapis_do_pliku()
+Graniastoslup6::~Graniastoslup6()
 {
-    std::ofstream StrmPlikowy;
-
-    StrmPlikowy.open(sNazwaPliku);
-    if(!StrmPlikowy.is_open())
-    {
-        std::cerr << ":( Operacja otwarcia do zapisu \"" << sNazwaPliku << "\"" << std::endl
-                  << ":( nie powiodla sie." << std::endl;
-        return false;
-    }
-    for(int i=0; i<GRANIA_SIZE; i++)
-    {
-        StrmPlikowy << std::setw(16) << std::fixed << std::setprecision(10) << wierzcholki[i] << std::endl;
-        if(i%2==1)
-        {
-            StrmPlikowy << std::endl;
-        }
-        if(i==GRANIA_SIZE)  //ponowne zapisanie dwoch pierwszych punktow
-        {
-            StrmPlikowy << std::setw(16) << std::fixed << std::setprecision(10) << wierzcholki[0] << std::endl;
-            StrmPlikowy << std::setw(16) << std::fixed << std::setprecision(10) << wierzcholki[1] << std::endl;
-        }
-    }
-    StrmPlikowy.close();
-    return !StrmPlikowy.fail();
+    delete wymiary;
 }
 
-/******************************************************************************
- |  Przeciazenie operatora <<                                                 |                                               
- |  Argumenty:                                                                |
- |     strm - strumien wyjsciowy                                              |
- |     Grania - zmienna pomocnicza do operacji na graniastoslupie             |
- |  Zwraca:                                                                   |
- |     Strumien wyjsciowy                                                     |
- */
-std::ostream & operator << (std::ostream &strm, const Graniastoslup6 &Grania)
-{
-    for(int i=0; i<GRANIA_SIZE; i++)
-    {
-        strm << Grania[i] << std::endl;
-        if(i%2==1)
-        {
-            strm << std::endl;
-        }
-    }
-    return strm;
-}
+
+
 
 

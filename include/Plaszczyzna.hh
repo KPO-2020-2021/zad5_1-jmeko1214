@@ -2,6 +2,8 @@
 #define PLASZCZYZNA_HH
 
 #include "BrylaGeometryczna.hh"
+#include "Wektor3D.hh"
+#include "Macierz3x3.hh"
 
 
 /*!

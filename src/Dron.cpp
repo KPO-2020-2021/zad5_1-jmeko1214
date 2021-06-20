@@ -1,5 +1,4 @@
 #include "Dron.hh"
-#include "Scena.hh"
 
 /*!
  * \brief Konstruktor bezparametryczny Drona
@@ -9,51 +8,68 @@ Dron::Dron(){}
 /*!
  * \brief Konstruktor parametryczny Drona
  */
+//Dron::Dron(int id, PzG::LaczeDoGNUPlota &Lacze, Wektor3D polozenie) : Lacze(Lacze)
 Dron::Dron(int id, Wektor3D polozenie)
 {
+    std::cout<<"cos6"<<std::endl;
     kat = 0;
     this->id = id;
-    korpus = new Prostopadloscian(polozenie, 50, 80, 60, "../datasets/Korpus" + std::to_string(id) + ".dat");
+    this->Lacze = Lacze;
+    
+    korpus.UstawNazwaPliku("../datasets/korpus" + std::to_string(id) + ".dat");
     for(int i=0; i<ROTORY; i++)
     {
-        rotor[i] = new Graniastoslup6((*korpus)[i+4], 20, "../datasets/Roror" + std::to_string(id) + ".dat");
+        rotor[i].UstawNazwaPliku("../datasets/rotor" + std::to_string(i) 
+                                 + "_dron" + std::to_string(id) + ".dat");
     }
-    korpus_kopia = *korpus;
+    Lacze.DodajNazwePliku(korpus.ZwrocNazwaPliku().c_str(), PzG::RR_Ciagly, 2);
+    for(int i=0; i<ROTORY; i++)
+    {
+        Lacze.DodajNazwePliku(rotor[i].ZwrocNazwaPliku().c_str(), PzG::RR_Ciagly, 2);
+    }
+    korpus_kopia = korpus;
     korpus_kopia.Przesuniecie(polozenie);
     for(int i=0; i<ROTORY; i++)
     {
-        rotor_kopia[i] = *rotor[i];
+        rotor_kopia[i] = rotor[i];
     }
+    for(int i=0; i<ROTORY; i++)
+    {
+        for(int j=0; j<ROTORY; j++)
+        {
+            j=j*2;
+            rotor_kopia[i].Przesuniecie(korpus[j] + polozenie);
+        }
+        
+    }
+    this->droga = this->droga + polozenie;
+    
 }
 
 /*!
  * \brief Metoda odpowiada za wznoszenie Drona
  */
-void Dron::Lot_w_gore()
+void Dron::Lot_w_gore(double droga)
 {
     Wektor3D gora;
-    gora[2] = 1;
+    gora[2] = droga;
 
-    korpus->Przesuniecie(gora);
-    for(int i=0; i<ROTORY; i++)
-    {
-        rotor_kopia->Obrot(obrot);
-    }
+    this->droga = this->droga + gora;
+    korpus_kopia.Obrot(obrot);
+    korpus_kopia.Przesuniecie(this->droga);
 }
 
 /*!
  * \brief Metoda odpowiada za opadanie Drona
  */
-void Dron::Lot_w_dol()
+void Dron::Lot_w_dol(double droga)
 {
-    Wektor3D gora;
-    gora[2] = -1;
+    Wektor3D dol;
+    dol[2] = droga;
 
-    korpus->Przesuniecie(gora);
-    for(int i=0; i<ROTORY; i++)
-    {
-        rotor_kopia->Obrot(obrot);
-    }
+    this->droga = this->droga + dol;
+    korpus_kopia.Obrot(obrot);
+    korpus_kopia.Przesuniecie(this->droga);
 }
 
 /*!
@@ -97,7 +113,7 @@ void Dron::Steruj_dronem()
     std::cout << "  Wznoszenie ..." << std::endl;
     for(int i=0; i<100; i++)
     {
-        Lot_w_gore();
+        Lot_w_gore(1);
         Zapisz_do_pliku();
         Lacze.Rysuj();
         usleep(CZEKAJ);
@@ -121,7 +137,7 @@ void Dron::Steruj_dronem()
     std::cout << "  Opadanie ..." << std::endl;
     for(int i=0; i<100; i++)
     {
-        Lot_w_dol();
+        Lot_w_dol(-1);
         Zapisz_do_pliku();
         Lacze.Rysuj();
         usleep(CZEKAJ);
@@ -143,12 +159,10 @@ void Dron::Steruj_dronem()
  */
 void Dron::Zapisz_do_pliku()
 {
-    korpus_kopia.Zapis_do_pliku();
+    korpus_kopia.Zapisz_do_pliku();
     for(int i=0; i<ROTORY; i++)
     {
-        rotor_kopia[i].Zapis_do_pliku();
+        rotor_kopia[i].Zapisz_do_pliku();
     }
 }
-
-
 

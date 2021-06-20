@@ -32,100 +32,65 @@ Prostopadloscian::Prostopadloscian()
  |  Zwraca:                                                                   |
  |     Wierzcholki prostopadloscianu przesuniete o zadany wektor              | 
  */
-Prostopadloscian::Prostopadloscian(Wektor3D &wektor, double wysokosc, double szerokosc, double dlugosc, std::string sNazwaPliku)
+Prostopadloscian::Prostopadloscian(Wektor3D srodek, double wysokosc, double szerokosc, double dlugosc, std::string sNazwaPliku)
 {
+
     this->sNazwaPliku = sNazwaPliku;
-    for(int i=0; i<WIERZCHOLKI; i++)
-    {
-        wierzcholki[i] = wektor;
-    }
-    srodek[0] = wektor[0] + szerokosc/2;
-    srodek[1] = wektor[1] + wysokosc/2;
-    srodek[2] = wektor[2] + dlugosc/2;
+    this->srodek = srodek;
+    double wym[] = {wysokosc, szerokosc, dlugosc};
+    wymiary = new Wektor3D(wym);
+    Wektor3D vector;
 
-    wierzcholki[1][0] += szerokosc;
+    vector[0] = srodek[0] - wysokosc/2;
+    vector[1] = srodek[1] + szerokosc/2;
+    vector[2] = srodek[2] + dlugosc/2;
+    wierzcholki.push_back(vector);
+    
+    vector[0] = srodek[0] - wysokosc/2;
+    vector[1] = srodek[1] + szerokosc/2;
+    vector[2] = srodek[2] - dlugosc/2;
+    wierzcholki.push_back(vector);
 
-    wierzcholki[2][1] += wysokosc;
+    vector[0] = srodek[0] + wysokosc/2;
+    vector[1] = srodek[1] + szerokosc/2;
+    vector[2] = srodek[2] + dlugosc/2;
+    wierzcholki.push_back(vector);
 
-    wierzcholki[3][0] += szerokosc;
-    wierzcholki[3][1] += wysokosc;
+    vector[0] = srodek[0] + wysokosc/2;
+    vector[1] = srodek[1] + szerokosc/2;
+    vector[2] = srodek[2] - dlugosc/2;
+    wierzcholki.push_back(vector);
 
-    wierzcholki[4][1] += wysokosc;
-    wierzcholki[4][2] += dlugosc;
+    vector[0] = srodek[0] + wysokosc/2;
+    vector[1] = srodek[1] - szerokosc/2;
+    vector[2] = srodek[2] + dlugosc/2;
+    wierzcholki.push_back(vector);
 
-    wierzcholki[5][0] += szerokosc;
-    wierzcholki[5][1] += wysokosc;
-    wierzcholki[5][2] += dlugosc;
+    vector[0] = srodek[0] + wysokosc/2;
+    vector[1] = srodek[1] - szerokosc/2;
+    vector[2] = srodek[2] - dlugosc/2;
+    wierzcholki.push_back(vector);
 
-    wierzcholki[6][2] += dlugosc;
+    vector[0] = srodek[0] - wysokosc/2;
+    vector[1] = srodek[1] - szerokosc/2;
+    vector[2] = srodek[2] + dlugosc/2;
+    wierzcholki.push_back(vector);
 
-    wierzcholki[7][0] += szerokosc;
-    wierzcholki[7][2] += dlugosc;
+    vector[0] = srodek[0] - wysokosc/2;
+    vector[1] = srodek[1] - szerokosc/2;
+    vector[2] = srodek[2] - dlugosc/2;
+    wierzcholki.push_back(vector);
+    
 }
 
 
-/******************************************************************************
- |  Realizuje zapis wspolrzednych Prostopadloscian do pliku                   |                                               
- |  Argumenty:                                                                |
- |     sNazwaPliku - nazwa pliku, do ktorego sa zapisywane wspolrzedne wierzch|
- |     Pr - przechowuje wspolrzedne wierzcholkow, ktore maja byc zapisane     |
- |  Zwraca:                                                                   |
- |     True lub False                                                         |
- */
-bool Prostopadloscian::Zapis_do_pliku()
+
+
+Prostopadloscian::~Prostopadloscian()
 {
-    std::ofstream StrmPlikowy;
-
-    StrmPlikowy.open(sNazwaPliku);
-    if(!StrmPlikowy.is_open())
-    {
-        std::cerr << ":( Operacja otwarcia do zapisu \"" << sNazwaPliku << "\"" << std::endl
-                  << ":( nie powiodla sie." << std::endl;
-        return false;
-    }
-    for(int i=0; i<WIERZCHOLKI; i++)
-    {
-        StrmPlikowy << std::setw(16) << std::fixed << std::setprecision(10) << wierzcholki[i] << std::endl;
-        if(i%2==1)
-        {
-            StrmPlikowy << std::endl;
-        }
-        if(i==WIERZCHOLKI)  //ponowne zapisanie dwoch pierwszych punktow
-        {
-            StrmPlikowy << std::setw(16) << std::fixed << std::setprecision(10) << wierzcholki[0] << std::endl;
-            StrmPlikowy << std::setw(16) << std::fixed << std::setprecision(10) << wierzcholki[1] << std::endl;
-        }
-    }
-
-    StrmPlikowy.close();
-    return !StrmPlikowy.fail();
+    delete wymiary;
 }
 
-/******************************************************************************
- |  Przeciazenie operatora <<                                                 |                                               
- |  Argumenty:                                                                |
- |     strm - strumien wyjsciowy                                              |
- |     prosty - zmienna pomocnicza do operacji na prostopadloscianie          |
- |  Zwraca:                                                                   |
- |     Strumien wyjsciowy                                                     |
- */
-std::ostream & operator << (std::ostream &strm, const Prostopadloscian &prosty)
-{
-    for(int i=0; i<WIERZCHOLKI; i++)
-    {
-        strm << prosty[i] << std::endl;
-        if(i%2==1)
-        {
-            strm << std::endl;
-        }
-        if(i==WIERZCHOLKI)  //ponowne zapisanie dwoch pierwszych punktow
-        {
-            strm << prosty[0] << std::endl;
-            strm << prosty[1] << std::endl;
-        }
-    }
-    return strm;
-}
 
 
 

@@ -12,7 +12,7 @@
 Plaszczyzna::Plaszczyzna(double dlugosc, double szerokosc, double wysokosc, std::string sNazwaPliku)
 {
     this->sNazwaPliku = sNazwaPliku;
-    Wektor3D wek;//[3];
+    Wektor3D wek;
     ilosc = 0;
     for(int i=-dlugosc/2; i<=dlugosc/2; i+=20)
     {
@@ -39,14 +39,14 @@ bool Plaszczyzna::Zapisz_do_pliku()
 {
     std::ofstream StrmPlikowy;
 
-    StrmPlikowy.open(sNazwaPliku);
+    StrmPlikowy.open(sNazwaPliku, std::ios::out);
     if(!StrmPlikowy.is_open())
     {
         std::cerr << ":( Operacja otwarcia do zapisu \"" << sNazwaPliku << "\"" << std::endl
                   << ":( nie powiodla sie." << std::endl;
         return false;
     }
-    for(int i=0; i<ilosc; i++)
+    for(int i=0; i<(int)siatka.size(); i++)
     {
         if(i%ilosc==0)
         {
