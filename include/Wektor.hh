@@ -54,6 +54,7 @@ public:
 
   static int ZwrocIloscObecnie() {return ilosc_obecnie;}
   static int ZwrocIloscWszystkie() {return ilosc_wszystkie;}
+  void Ilosc_wektorow();
   ~Wektor();
 };
 
