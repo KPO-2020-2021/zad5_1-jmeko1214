@@ -25,7 +25,7 @@
 #include "exampleConfig.h"
 #include "example.h"
 #include "Scena.hh"
-#include "Wektor.hh"
+#include "Prostopadloscian.hh"
 
 using namespace std;
 
@@ -66,23 +66,17 @@ int main() {
         
   PzG::LaczeDoGNUPlota  Lacze;  // Zmienna odpowiada za wizualizacje rysunku prostopadloscianu
   Lacze.ZmienTrybRys(PzG::TR_3D);
-  Wektor3D wektor;
+  
 
   cout<<" Program rysuje w gnuplocie Drona z czterema rotorami,"<<endl;
   cout<<" obraca go o zadany kat i przesuwa o zadany droge."<<endl;
   cout<<" Wynik jest wyswietlany w gnuplocie oraz zapisywany do pliku."<<endl<<endl;
   
+  Menu_wyswietl();
   
-  double pol[3]={2,3,4};
-  
-  Wektor3D wek = Wektor3D(pol);
-  std::cout<<"wek"<<std::endl;
-  //Dron dron(0, Lacze, wek);
-
-  int id = 0;
-  Dron dron(id, wek);
-  wektor.Ilosc_wektorow();
+  Wektor3D wektor;
   Scena scena;
+
   wektor.Ilosc_wektorow();
   char opcja=0;         //zmienna dla obslugi prostego menu
 

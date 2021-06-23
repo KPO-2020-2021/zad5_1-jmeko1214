@@ -19,15 +19,23 @@
  * po tych operacjach boki sa rowne.
  */
 class Prostopadloscian: public BrylaGeometryczna {
-
+    
   public:
     Prostopadloscian();
     Prostopadloscian( Wektor3D srodek, double wysokosc, double szerokosc, double dlugosc, std::string sNazwaPliku);                                                                                                                                                                                                                                                                      
 
-    
+    bool Zapis_do_pliku();
     ~Prostopadloscian();
 };
   
+/*!
+ * \brief Przeciazenie operatora wyswietlania.
+ *
+ * Przeciazenie sluzy do przekazywania do strumienia wspolrzednych
+ * wierzcholkow prostopadloscianu.
+ */
+//wyswietla wspolrzedne wierzcholkow prostopadlosciana 
+std::ostream& operator << ( std::ostream &Strm, const Prostopadloscian &prosty); 
 
 #endif
 

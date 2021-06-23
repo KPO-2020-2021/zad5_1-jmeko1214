@@ -3,20 +3,18 @@
 
 #include "Prostopadloscian.hh"
 #include "Graniastoslup6.hh"
+#include "BrylaGeometryczna.hh"
 #include "lacze_do_gnuplota.hh"
 #include <string.h>
 #include <unistd.h>
 
 #define ROTORY 4
-#define CZEKAJ 10000
+#define CZEKAJ 5000
 
 class Dron {
     private:
-    PzG::LaczeDoGNUPlota Lacze;
-    Prostopadloscian korpus;
-    Prostopadloscian korpus_kopia;
-    Graniastoslup6 rotor[4];
-    Graniastoslup6 rotor_kopia[4];
+    PzG::LaczeDoGNUPlota &Lacze;
+    Prostopadloscian *korpus;
     Wektor3D droga;
     Macierz3x3 obrot;
     double kat;
@@ -28,8 +26,7 @@ class Dron {
     * \brief Konstruktory klasy Dron
     */
     Dron();
-    Dron(int id, Wektor3D polozenie);
-    //Dron(int id, PzG::LaczeDoGNUPlota &Lacze, Wektor3D polozenie);
+    Dron(int id, PzG::LaczeDoGNUPlota &Lacze, Wektor3D polozenie);
 
     /*!
     * \brief Metody klasy Dron
