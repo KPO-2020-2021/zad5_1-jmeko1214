@@ -67,18 +67,17 @@ int main() {
   PzG::LaczeDoGNUPlota  Lacze;  // Zmienna odpowiada za wizualizacje rysunku prostopadloscianu
   Lacze.ZmienTrybRys(PzG::TR_3D);
   
+  Wektor3D wektor;
+  Scena scena;
+  char opcja=0;         //zmienna dla obslugi prostego menu
 
   cout<<" Program rysuje w gnuplocie Drona z czterema rotorami,"<<endl;
   cout<<" obraca go o zadany kat i przesuwa o zadany droge."<<endl;
   cout<<" Wynik jest wyswietlany w gnuplocie oraz zapisywany do pliku."<<endl<<endl;
   
-  Menu_wyswietl();
-  
-  Wektor3D wektor;
-  Scena scena;
-
   wektor.Ilosc_wektorow();
-  char opcja=0;         //zmienna dla obslugi prostego menu
+
+  Menu_wyswietl();
 
   while(opcja!='k')
   {
@@ -116,6 +115,7 @@ int main() {
       }
     }
   }
+  wektor.Ilosc_wektorow();
 
   // Bring in the dummy class from the example source,
   // just to show that it is accessible from main.cpp.

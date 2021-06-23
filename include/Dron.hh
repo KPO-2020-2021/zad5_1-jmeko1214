@@ -8,7 +8,6 @@
 #include <string.h>
 #include <unistd.h>
 
-#define ROTORY 4
 #define CZEKAJ 5000
 
 class Dron {
@@ -36,7 +35,7 @@ class Dron {
     void Obrot(double kat);
     void Przesuniecie(double przesun);
     void Steruj_dronem();
-    //void Trasa(double droga);
+    void Trasa(double kat, double droga);
     void Zapisz_do_pliku(); 
 };
 

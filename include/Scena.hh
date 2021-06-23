@@ -21,8 +21,6 @@ class Scena {
     PzG::LaczeDoGNUPlota Lacze;
     Plaszczyzna *dno;
     Dron *drony[2];
-    //Dron *dron1;
-    //Dron *dron2;
     int numer;
 
     public:

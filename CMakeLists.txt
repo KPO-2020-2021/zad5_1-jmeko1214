@@ -41,7 +41,7 @@ set(SOURCES          # All .cpp files in src/
     src/example.cpp
     src/Dron.cpp
     src/Prostopadloscian.cpp
-    src/Graniastoslup6.cpp
+    #src/Graniastoslup6.cpp
     src/BrylaGeometryczna.cpp
     src/Plaszczyzna.cpp
     src/Scena.cpp

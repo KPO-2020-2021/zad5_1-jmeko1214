@@ -51,6 +51,17 @@ std::string BrylaGeometryczna::ZwrocNazwaPliku() const
     return sNazwaPliku;
 }
 
+BrylaGeometryczna BrylaGeometryczna::operator + (Wektor3D przesun)
+{
+    BrylaGeometryczna przesuniecie;
+    
+    for(int i=0; i<(int)wierzcholki.size(); i++)
+    {
+        przesuniecie[i] = wierzcholki[i] + przesun;
+    }
+    return przesuniecie;    
+}
+
 /******************************************************************************
  |  Metoda klasy BrylaGeometryczna.                                           |
  |  Argumenty:                                                                |
@@ -61,11 +72,16 @@ std::string BrylaGeometryczna::ZwrocNazwaPliku() const
  */
 void BrylaGeometryczna::Obrot(Macierz3x3 macierz)  
 {
-    for(int i=0; i<(int)wierzcholki.size(); i++)
+    /*for(int i=0; i<(int)wierzcholki.size(); i++)
     {
         wierzcholki[i] = macierz * wierzcholki[i];
     }
-    srodek = macierz * srodek;
+    srodek = macierz * srodek;*/
+    
+    for(int i=0; i<(int)wierzcholki.size(); i++)
+    {
+        wierzcholki[i] = macierz * (wierzcholki[i]-srodek)+srodek;
+    }
 }
 
 /******************************************************************************

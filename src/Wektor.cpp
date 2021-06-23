@@ -56,8 +56,8 @@ Wektor<SIZE>::Wektor() {
     for (int i = 0; i < SIZE; ++i) {
         size[i] = 0;
     }
-    ++ilosc_obecnie;
-    ++ilosc_wszystkie;
+    ilosc_obecnie++;
+    ilosc_wszystkie++;
 }
 
 
@@ -73,8 +73,8 @@ Wektor<SIZE>::Wektor(double tmp[SIZE]) {
     for (int i = 0; i < SIZE; ++i) {
         size[i] = tmp[i];
     }
-    ++ilosc_obecnie;
-    ++ilosc_wszystkie;
+    ilosc_obecnie++;
+    ilosc_wszystkie++;
 }
 
 /******************************************************************************
@@ -89,6 +89,7 @@ void Wektor<SIZE>::Ilosc_wektorow()
 {
     std::cout << "   Aktualna ilosc obiektow Wektor3D: " << ilosc_obecnie << std::endl;
     std::cout << "     Laczna ilosc obiektow Wektor3D: " << ilosc_wszystkie << std::endl;
+    std::cout << std::endl;
 }
 
 
@@ -260,7 +261,7 @@ std::istream &operator >> (std::istream &Strm, Wektor<SIZE> &Wek) {
 template <int SIZE>
 Wektor<SIZE>::~Wektor()
 {
-    --ilosc_obecnie;
+    ilosc_obecnie--;
 }
 
 

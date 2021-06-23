@@ -1,11 +1,13 @@
 #include "Scena.hh"
 
 
-
+/*!
+ * \brief Konstruktor klasy Scena
+ */
 Scena::Scena()
 {
-    double polozenie[3] = {25.0, 25.0, 25.0};
-    double polozenie2[3] = {100.0, 25.0, 25.0};
+    double polozenie[3] = {25.0, 25.0, 10.0};
+    double polozenie2[3] = {100.0, 25.0, 10.0};
     Wektor3D w1(polozenie);
     Wektor3D w2(polozenie2);
 
@@ -14,30 +16,32 @@ Scena::Scena()
     // Ustawienie zakresow poszczegolnych osi
     Lacze.UstawZakresY(-300,300);
     Lacze.UstawZakresX(-300,300);
-    Lacze.UstawZakresZ(-300,300);
+    Lacze.UstawZakresZ(-100,400);
     dno = new Plaszczyzna(600, 600, 0, "../datasets/bryly_wzorcowe/plaszczyzna.dat");
     dno->Zapisz_do_pliku();   //plik plaszczyzny
   
-    drony[0] = new Dron(0, Lacze, w1);
-    drony[1] = new Dron(1, Lacze, w2);
-
     Lacze.DodajNazwePliku(("../datasets/korpus" + std::to_string(1) + ".dat").c_str(), PzG::RR_Ciagly, 2);
-    
-    //dron1 = new Dron(1, Lacze, w1);
-    //dron1->Zapisz_do_pliku();     //plik drona
-
     Lacze.DodajNazwePliku(("../datasets/korpus" + std::to_string(2) + ".dat").c_str(), PzG::RR_Ciagly, 2);
-    //dron2 = new Dron(2, Lacze, w2);
-    //dron2->Zapisz_do_pliku();     //plik drona
-  
+
+    drony[0] = new Dron(0, Lacze, w1);
+    drony[0]->Zapisz_do_pliku();     //plik drona
+    drony[1] = new Dron(1, Lacze, w2);
+    drony[1]->Zapisz_do_pliku();     //plik drona
+
     Lacze.Rysuj();
 }
 
+/*!
+ * \brief Metoda odpowiada za rysowanie
+ */
 void Scena::Rysuj()
 {
     Lacze.Rysuj();
 }
 
+/*!
+ * \brief Metoda odpowiada za wybor Drona
+ */
 bool Scena::Wybor_drona()
 {
     std::cout << "   Wybor aktywnego drona" << std::endl << std::endl;
@@ -66,7 +70,10 @@ bool Scena::Wybor_drona()
     return true;      
 }
 
-
+/*!
+ * \brief Metoda odpowiada za ustawienie, ktorym
+ *   Dronem realizowac ruch
+ */
 void Scena::Ruch_dronem()
 {
     int numer;
@@ -81,8 +88,9 @@ void Scena::Ruch_dronem()
     }
 }
 
-
-
+/*!
+ * \brief Destruktor, usuwa dno oraz drony
+ */
 Scena::~Scena()
 {
     delete dno;

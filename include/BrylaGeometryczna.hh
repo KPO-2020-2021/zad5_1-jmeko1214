@@ -29,6 +29,7 @@ class BrylaGeometryczna{
     
     Wektor3D zwroc_srodek() const;
     std::string ZwrocNazwaPliku() const;
+    BrylaGeometryczna operator + (Wektor3D przesun);
     void Obrot(Macierz3x3 macierz);
     void Przesuniecie(Wektor3D przesun);
     ~BrylaGeometryczna();

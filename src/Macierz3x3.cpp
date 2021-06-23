@@ -18,39 +18,39 @@ Macierz3x3 MacierzObrotu(double kat, char Os)
         case 'x':
         {
             Wynik(0,0) = 1;
-            Wynik(1,0) = 0;
-            Wynik(2,0) = 0;
             Wynik(0,1) = 0;
-            Wynik(1,1) = cos(radiany);
-            Wynik(2,1) = -sin(radiany);
             Wynik(0,2) = 0;
-            Wynik(1,2) = sin(radiany);
+            Wynik(1,0) = 0;
+            Wynik(1,1) = cos(radiany);
+            Wynik(1,2) = -sin(radiany);
+            Wynik(2,0) = 0;
+            Wynik(2,1) = sin(radiany);
             Wynik(2,2) = cos(radiany);
             break;
         }
         case 'y':
         {
             Wynik(0,0) = cos(radiany);
-            Wynik(1,0) = 0;
-            Wynik(2,0) = sin(radiany);
             Wynik(0,1) = 0;
+            Wynik(0,2) = sin(radiany);
+            Wynik(1,0) = 0;
             Wynik(1,1) = 1;
-            Wynik(2,1) = 0;
-            Wynik(0,2) = -sin(radiany);
             Wynik(1,2) = 0;
+            Wynik(2,0) = -sin(radiany);
+            Wynik(2,1) = 0;
             Wynik(2,2) = cos(radiany);
             break;
         }
         case 'z':
         {
             Wynik(0,0) = cos(radiany);
-            Wynik(1,0) = -sin(radiany);
-            Wynik(2,0) = 0;
-            Wynik(0,1) = sin(radiany);
-            Wynik(1,1) = cos(radiany);
-            Wynik(2,1) = 0;
+            Wynik(0,1) = -sin(radiany);
             Wynik(0,2) = 0;
+            Wynik(1,0) = sin(radiany);
+            Wynik(1,1) = cos(radiany);
             Wynik(1,2) = 0;
+            Wynik(2,0) = 0;
+            Wynik(2,1) = 0;
             Wynik(2,2) = 1;
             break;
         }
